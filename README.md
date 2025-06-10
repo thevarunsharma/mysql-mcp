@@ -12,7 +12,8 @@ DATABASE:
   host: <mysql_hostname>
   database: <db_name>
   port: <db_port>
-  # this section is optional if you are using ssl based db authentication
+  # following section is optional
+  # required if you are using ssl based db authentication
   ssl:
     cert: "/path/to/cert"       # client certificate
     key: "/path/to/key"         # client private key
@@ -21,7 +22,7 @@ DATABASE:
 
 ### Install dependencies
 * Make sure your using `python 3.10+`
-* Create and activate a virtual environment and install python dependencies:
+* Create and activate the virtual environment and install python dependencies:
 ```
 python -m venv env
 source env/bin/activate
@@ -36,6 +37,6 @@ python server.py
 The server will start running at `http://127.0.0.1:8000`
 
 ## Add MCP server to VS Code
-[Following these steps to add the local MCP server to VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-user-settings)
+[Follow these steps to add the local MCP server to VS Code](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server-to-your-user-settings)
 
 Set `http://127.0.0.1:8000/sse` as the `url` value
