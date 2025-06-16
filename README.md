@@ -21,7 +21,7 @@ DATABASE:
 ```
 
 ### Install dependencies
-* Make sure your using `python 3.10+`
+* Make sure you're using `python 3.10+`
 * Create and activate the virtual environment and install python dependencies:
 ```
 python -m venv env
