@@ -1,6 +1,6 @@
 import pytest
-from box import Box
-from database import DbConnector
+from conf import DatabaseConfig
+from database.connector import DbConnector
 from sqlalchemy import text
 
 
@@ -23,13 +23,14 @@ class TestDbConnection:
 
     def test_url_from_conf(self, db_connector):
         """Test the URL generation from configuration."""
-        db_conf = Box({
-            'user': 'test_user',
-            'password': 'test_p@ss',
-            'host': 'localhost',
-            'port': 3306,
-            'database': 'test_db'
-        }, frozen_box=True)
+        db_conf = DatabaseConfig(
+            driver='mysql+pymysql',
+            user='test_user',
+            password='test_p@ss',
+            host='localhost',
+            port=3306,
+            database='test_db'
+        )
         expected_url = "mysql+pymysql://test_user:test_p%40ss@localhost:3306/test_db"
         assert db_connector.url_from_conf(db_conf) == expected_url
     

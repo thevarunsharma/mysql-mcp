@@ -1,6 +1,8 @@
 import urllib.parse
-from box import Box
-from conf import load_config
+from conf import (
+    load_config,
+    DatabaseConfig
+)
 from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.exc import DBAPIError
 
@@ -9,7 +11,7 @@ class DbConnector:
 
     def __init__(self, is_test: bool = False):
         configs = load_config()
-        if "DATABASE" not in configs:
+        if not hasattr(configs, "DATABASE"):
             raise KeyError("Configuration does not contain 'DATABASE' section.")
         self._db_conf = configs.DATABASE
         if is_test:
@@ -20,11 +22,11 @@ class DbConnector:
             self.engine = create_engine(
                 self._db_url,
                 connect_args={
-                    "ssl": self._db_conf.get("ssl", None)
+                    "ssl": self._db_conf.ssl
                 }
             )
 
-    def url_from_conf(self, db_conf: Box) -> str:
+    def url_from_conf(self, db_conf: DatabaseConfig) -> str:
         """
         Create a database URL from the configuration dictionary.
 

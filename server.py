@@ -1,6 +1,6 @@
 import json
 from mcp.server.fastmcp import FastMCP
-from database import DbConnector
+from database.connector import DbConnector
 
 mcp = FastMCP("mysql_client")
 
